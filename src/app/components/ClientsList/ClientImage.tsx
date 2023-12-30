@@ -8,7 +8,7 @@ export default function ClientImage({
 	imageName,
 }: ClientImageProps) {
 	const imageWrapClassName = useMemo(() => (`
-		w-12 h-12 p-[0.1875rem]
+		w-6 h-6 p-[0.1rem]
 		rounded-full ring-1 ring-slate-900/10
 		shadow overflow-hidden flex-none
 		dark:bg-slate-600 dark:highlight-white/20
