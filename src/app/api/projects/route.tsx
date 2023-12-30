@@ -1,6 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-
-
 const projectsData = [
     {
       "client": "Lido Finance",
@@ -496,6 +493,6 @@ const projectsData = [
     }
 ]
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    res.status(200).json(projectsData)
+export async function GET () { 
+    return Response.json(projectsData)
 }
