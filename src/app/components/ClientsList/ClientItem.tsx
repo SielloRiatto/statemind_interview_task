@@ -24,17 +24,20 @@ export default function ClientItem({
     font-medium text-xs text-sky-600 hover:underline hover:text-sky-500 dark:hover:text-sky-400
   `), [])
 
-  const linkHref = useMemo(() => (`
-    /${name.replaceAll(' ', '')}
-  `), [name])
-
   return (
     <li className={itemClassName} style={{ counterIncrement: "step 1"}}>
       <ClientImage imageName={imageName} />
 
       <div className="peer group flex-auto ml-4">
         <div>
-          {name} <Link href={linkHref} className={linkClassName}>See {reportsCount} projects</Link>
+          {`${name} `} 
+          <Link
+            href={`/${name}`}
+            prefetch={false}
+            className={linkClassName}
+          >
+            See {reportsCount} projects
+          </Link>
         </div>
       </div>
     </li>
