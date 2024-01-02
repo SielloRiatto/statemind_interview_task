@@ -3,6 +3,7 @@ import ClientImage from "./ClientImage"
 import { useMemo } from "react"
 
 interface ClientItemProps {
+  id: string,
   name: string,
   reportsCount: number,
   isLast: boolean,
@@ -10,6 +11,7 @@ interface ClientItemProps {
 }
 
 export default function ClientItem({
+  id,
   name,
   reportsCount,
   isLast,
@@ -32,7 +34,7 @@ export default function ClientItem({
         <div>
           {`${name} `} 
           <Link
-            href={`/${name}`}
+            href={`/${id}`}
             prefetch={false}
             className={linkClassName}
           >

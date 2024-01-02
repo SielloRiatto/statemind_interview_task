@@ -12,6 +12,8 @@ type AuditDetailsType = {
 }
 
 type AuditType = {
+	id: string,
+	clientId: string,
 	details: AuditDetailsType,
 	audit_name: string,
 	start_date: string,
@@ -24,10 +26,10 @@ type AuditType = {
 }
 
 type ClientType = {
-	audits: AuditType[],
+	id: string,
 	client: string,
 	img: string,
-	log: number,
+	loc: number,
 	reports: number,
 	tvl: number,
 }

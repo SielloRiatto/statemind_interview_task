@@ -12,6 +12,7 @@ export default function ClientsList() {
 			{clients?.length ? clients.map((client, i, arr) => (
 				<ClientItem
 					key={client.client}
+					id={client.id}
 					name={client.client}
 					reportsCount={client.reports}
 					isLast={ i === arr.length - 1 }
