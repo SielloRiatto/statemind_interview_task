@@ -1,22 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ClientType } from "../types"
+import { ClientType, StatusType } from "../types"
 
-type UseClientsParams = {
-	clientId?: string,
-	withAudits?: boolean
-}
-
-export default function useClients (params?: UseClientsParams) {
+export default function useClients () {
+	const [status, setStatus] = useState<StatusType>('LOAD')
 	const [clients, setClients] = useState<ClientType[]>([])
 
 	useEffect(() => {
-		const requestParams = params?.clientId ? (
-			`${params.clientId}?withAudits=${params.withAudits ? true : false}`
-		) : ''
-
-		fetch(`/api/clients/${requestParams}`)
+		fetch(`/api/clients`)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error('Network response was not ok')
@@ -26,11 +18,13 @@ export default function useClients (params?: UseClientsParams) {
 		})
 		.then((json: ClientType[]) => {
 			setClients(json)
+			setStatus('SUCCESS')
 		})
 		.catch(err => {
 			console.error(err)
+			setStatus('FAIL')
 		})
-	}, [params?.clientId, params?.withAudits])
+	}, [setClients])
 
-	return clients
+	return { clients, status }
 }

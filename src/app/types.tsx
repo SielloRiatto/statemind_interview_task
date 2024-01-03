@@ -2,6 +2,7 @@ export type {
 	ClientType,
 	AuditType,
 	AuditDetailsType,
+	StatusType,
 }
 
 type AuditDetailsType = {
@@ -33,3 +34,5 @@ type ClientType = {
 	reports: number,
 	tvl: number,
 }
+
+type StatusType = 'LOAD' | 'SUCCESS' | 'FAIL'
