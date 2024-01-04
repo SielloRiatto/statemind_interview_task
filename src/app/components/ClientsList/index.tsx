@@ -24,7 +24,7 @@ export default function ClientsList() {
 		<ol className={"relative space-y-2 mb-16 p-4"}>
 			{clients.map((client, i, arr) => (
 				<ClientItem
-					key={client.client}
+					key={client.id}
 					id={client.id}
 					name={client.client}
 					reportsCount={client.reports}

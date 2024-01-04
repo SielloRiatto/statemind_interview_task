@@ -33,6 +33,7 @@ type ClientType = {
 	loc: number,
 	reports: number,
 	tvl: number,
+	audits?: AuditType[]
 }
 
 type StatusType = 'LOAD' | 'SUCCESS' | 'FAIL'
