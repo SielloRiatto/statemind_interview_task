@@ -1,10 +1,19 @@
 'use client'
 
+import dynamic from "next/dynamic"
 import { useParams } from "next/navigation"
 import { useMemo } from "react"
 import useClient from "../hooks/useClient"
 import Loader from "./Loader"
-import ListDecimalItem from "./ListDecimalItem"
+import ListDecimalItemLoader from "./ListDecimalItem/ListDecimalItemLoader"
+
+const ListDecimalItem = dynamic(
+	() => import('./ListDecimalItem'),
+	{
+	  ssr: false,
+	  loading: ListDecimalItemLoader
+	}
+)
 
 export default function AuditsList() {
 	const { clientId }: { clientId: string } = useParams()

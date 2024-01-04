@@ -1,8 +1,17 @@
 'use client'
 
+import dynamic from "next/dynamic"
 import useClients from "../hooks/useClients"
 import Loader from "./Loader"
-import ListDecimalItem from "./ListDecimalItem"
+import ListDecimalItemLoader from "./ListDecimalItem/ListDecimalItemLoader"
+
+const ListDecimalItem = dynamic(
+	() => import('./ListDecimalItem'),
+	{
+	  ssr: false,
+	  loading: ListDecimalItemLoader
+	}
+)
 
 export default function ClientsList() {
 	const { clients, status } = useClients()
