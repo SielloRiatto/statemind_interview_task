@@ -1,9 +1,8 @@
 'use client'
 
-import useClients from "../../hooks/useClients"
-import ClientItem from "./ClientItem"
-import Loader from "../../components/Loader"
-
+import useClients from "../hooks/useClients"
+import Loader from "./Loader"
+import ListDecimalItem from "./ListDecimalItem"
 
 export default function ClientsList() {
 	const { clients, status } = useClients()
@@ -23,11 +22,12 @@ export default function ClientsList() {
 	return (
 		<ol className={"relative space-y-2 mb-16 p-4"}>
 			{clients.map((client, i, arr) => (
-				<ClientItem
+				<ListDecimalItem
 					key={client.id}
-					id={client.id}
-					name={client.client}
-					reportsCount={client.reports}
+					title={client.client}
+					linkText={`See ${client.reports} projects`}
+					linkHref={`/${client.id}`}
+					imageName={`component-driven.82a66c3c.png`}
 					isLast={ i === arr.length - 1 }
 				/>
 			))}

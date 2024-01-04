@@ -2,9 +2,9 @@
 
 import { useParams } from "next/navigation"
 import { useMemo } from "react"
-import useClient from "../../hooks/useClient"
-import Loader from "../Loader"
-import AuditItem from "./AuditItem"
+import useClient from "../hooks/useClient"
+import Loader from "./Loader"
+import ListDecimalItem from "./ListDecimalItem"
 
 export default function AuditsList() {
 	const { clientId }: { clientId: string } = useParams()
@@ -34,11 +34,11 @@ export default function AuditsList() {
 			client?.audits?.length ? (
 				<ol className={"relative space-y-2 mb-16 p-4"}>
 					{client.audits.map((audit, i, arr) => (
-						<AuditItem
+						<ListDecimalItem 
 							key={audit.id}
-							id={audit.id}
-							name={audit.audit_name}
-							userId={client.id}
+							title={audit.audit_name}
+							linkText={`See details`}
+							linkHref={`/${client.id}/${audit.id}`}
 							isLast={i === arr.length - 1}
 						/>
 					))}
