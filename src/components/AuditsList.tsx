@@ -3,12 +3,12 @@
 import dynamic from "next/dynamic"
 import { useParams } from "next/navigation"
 import { useMemo } from "react"
-import useClient from "../hooks/useClient"
-import Loader from "./Loader"
-import ListDecimalItemLoader from "./ListDecimalItem/ListDecimalItemLoader"
+import useClient from "@/hooks/useClient"
+import Loader from "@/components/Loader"
+import ListDecimalItemLoader from "@/components/ListDecimalItem/ListDecimalItemLoader"
 
 const ListDecimalItem = dynamic(
-	() => import('./ListDecimalItem'),
+	() => import('@/components/ListDecimalItem'),
 	{
 	  ssr: false,
 	  loading: ListDecimalItemLoader

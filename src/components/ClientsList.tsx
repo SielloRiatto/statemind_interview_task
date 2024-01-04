@@ -1,12 +1,12 @@
 'use client'
 
 import dynamic from "next/dynamic"
-import useClients from "../hooks/useClients"
-import Loader from "./Loader"
-import ListDecimalItemLoader from "./ListDecimalItem/ListDecimalItemLoader"
+import useClients from "@/hooks/useClients"
+import Loader from "@/components/Loader"
+import ListDecimalItemLoader from "@/components/ListDecimalItem/ListDecimalItemLoader"
 
 const ListDecimalItem = dynamic(
-	() => import('./ListDecimalItem'),
+	() => import('@/components/ListDecimalItem'),
 	{
 	  ssr: false,
 	  loading: ListDecimalItemLoader

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ClientType, StatusType } from "../types"
+import { ClientType, StatusType } from "@/types"
 
 type UseClientParams = {
 	clientId: string,

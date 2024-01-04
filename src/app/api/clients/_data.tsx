@@ -1,5 +1,5 @@
-import { AuditType } from "@/app/types"
-import { ClientType } from "@/app/types"
+import { AuditType } from "@/types"
+import { ClientType } from "@/types"
 
 export const audits: AuditType[] = [
   {

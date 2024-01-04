@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ClientType, StatusType } from "../types"
+import { ClientType, StatusType } from "@/types"
 
 export default function useClients () {
 	const [status, setStatus] = useState<StatusType>('LOAD')

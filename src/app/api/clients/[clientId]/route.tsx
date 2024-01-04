@@ -1,7 +1,7 @@
 
 import { NextRequest } from "next/server"
 import { audits, clients } from "../_data"
-import { ClientType } from "@/app/types"
+import { ClientType } from "@/types"
 
 export async function GET (
   request: NextRequest,
