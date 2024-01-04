@@ -1,17 +1,21 @@
 import { useMemo } from "react"
 
-interface ClientImageProps {
-	imageName?: string
+interface ListDecimalItemImageProps {
+	imageName: string
 }
 
-export default function ClientImage({
+export default function ListDecimalItemImage({
 	imageName,
-}: ClientImageProps) {
+}: ListDecimalItemImageProps) {
 	const imageWrapClassName = useMemo(() => (`
-		w-12 h-12 p-[0.1875rem]
+		w-6 h-6 p-[0.1rem]
 		rounded-full ring-1 ring-slate-900/10
 		shadow overflow-hidden flex-none
 		dark:bg-slate-600 dark:highlight-white/20
+	`), [])
+
+  const imageClassName = useMemo(() => (`
+    aspect-w-1 aspect-h-1 bg-[length:100%] dark:hidden
 	`), [])
 	
 	const imageUrl = useMemo(() => (`
@@ -21,11 +25,11 @@ export default function ClientImage({
 	return (
 		<div className={imageWrapClassName}>
 			<div
-				className="aspect-w-1 aspect-h-1 bg-[length:100%] dark:hidden"
+				className={imageClassName}
 				style={{
-						backgroundImage: imageUrl,
-						width: `100%`,
-						height: `100%`
+					backgroundImage: imageUrl,
+					width: `100%`,
+					height: `100%`
 				}}
 			></div>
 		</div>
