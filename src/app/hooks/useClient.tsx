@@ -8,7 +8,7 @@ type UseClientParams = {
 	withAudits?: boolean
 }
 
-export default function useClients (params: UseClientParams) {
+export default function useClient (params: UseClientParams) {
 	const [status, setStatus] = useState<StatusType>('LOAD')
 	const [client, setClient] = useState<ClientType | null>(null)
 
