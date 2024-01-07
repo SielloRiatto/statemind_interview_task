@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
-import { ClientType, ResultWithStatusType, StatusType } from "@/types"
+import { ResultWithStatusType, StatusType } from "@/types"
 import { fiveMinutes } from "@/constants"
 
 export default function useClient (): ResultWithStatusType {
@@ -25,13 +25,13 @@ export default function useClient (): ResultWithStatusType {
 
 			return response.json()
 		})
-		.then((json: ClientType[] | ClientType) => {
+		.then((json: Exclude<ResultWithStatusType["result"], null>) => {
 			setResult(json)
 			setStatus('SUCCESS')
 		})
 		.catch(err => {
 			console.error(err)
-			setStatus('LOAD')
+			setStatus('FAIL')
 		})
 	}, [setResult, clientId])
 

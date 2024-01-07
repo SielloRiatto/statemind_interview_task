@@ -1,9 +1,9 @@
-import { ClientType, ResultWithStatusType } from "@/types"
+import { ResultWithStatusType } from "@/types"
 import Loader from "@/components/Loader"
 import { FC } from "react"
 
 export interface StatusHOCProps {
-	result: ClientType[] | ClientType
+	result: Exclude<ResultWithStatusType["result"], null>
 }
 
 export default function statusHOC<P extends object>({
