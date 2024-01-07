@@ -1,14 +1,19 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ClientType, StatusType } from "@/types"
+import { ClientType, ResultWithStatusType, StatusType } from "@/types"
+import { useParams } from "next/navigation"
 
-export default function useClients () {
+export default function useClient (): ResultWithStatusType {
+	const { clientId }: { clientId: string } = useParams()
+
 	const [status, setStatus] = useState<StatusType>('LOAD')
-	const [clients, setClients] = useState<ClientType[]>([])
+	const [result, setResult] = useState<ResultWithStatusType["result"]>(null)
 
 	useEffect(() => {
-		fetch(`/api/clients`)
+		const urlParams: string = `${clientId}?withAudits=true`
+
+		fetch(`/api/clients/${clientId ? urlParams : ''}`)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error('Network response was not ok')
@@ -16,15 +21,15 @@ export default function useClients () {
 
 			return response.json()
 		})
-		.then((json: ClientType[]) => {
-			setClients(json)
+		.then((json: ClientType[] | ClientType) => {
+			setResult(json)
 			setStatus('SUCCESS')
 		})
 		.catch(err => {
 			console.error(err)
-			setStatus('FAIL')
+			setStatus('LOAD')
 		})
-	}, [setClients])
+	}, [setResult, clientId])
 
-	return { clients, status }
+	return { result, status }
 }

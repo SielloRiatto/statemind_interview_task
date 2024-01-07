@@ -1,9 +1,14 @@
 'use client'
 
+import { ReactElement } from "react"
 import dynamic from "next/dynamic"
+
+import { ClientType } from "@/types"
 import useClients from "@/hooks/useClients"
-import Loader from "@/components/Loader"
-import ListDecimalItemLoader from "@/components/ListDecimalItem/ListDecimalItemLoader"
+import statusHOC from "@/components/Loader/statusHOC"
+
+import ListDecimalItemLoader
+	from "@/components/ListDecimalItem/ListDecimalItemLoader"
 
 const ListDecimalItem = dynamic(
 	() => import('@/components/ListDecimalItem'),
@@ -13,33 +18,34 @@ const ListDecimalItem = dynamic(
 	}
 )
 
-export default function ClientsList() {
-	const { clients, status } = useClients()
+export default function ClientsList(): ReactElement {
+	const WrappedChild = statusHOC({
+		WrappedComponent: ClientsListBlock,
+		requestHook: useClients,
+		haveNoDataText: `Can't find any client`
+	})
 
-	if (status === 'LOAD') {
-		return <Loader />
-	}
+	return <WrappedChild />
+}
 
-	if (status === 'FAIL') {
-		return <>Error occured, try open later</>
-	}
-
-	if (status === 'SUCCESS' && clients.length === 0) {
-		return <>Clients don`t exist</>
-	}
-	
+function ClientsListBlock(
+	{ result: clients }:
+	{ result: NonNullable<ClientType[]> }
+): ReactElement {
 	return (
-		<ol className={"relative space-y-2 mb-16 p-4"}>
-			{clients.map((client, i, arr) => (
-				<ListDecimalItem
-					key={client.id}
-					title={client.client}
-					linkText={`See ${client.reports} projects`}
-					linkHref={`/${client.id}`}
-					imageName={`component-driven.82a66c3c.png`}
-					isLast={ i === arr.length - 1 }
-				/>
-			))}
-		</ol>
+		clients.length ? (
+			<ol className={"relative space-y-2 mb-16 p-4"}>
+				{clients.map((client, i, arr) => (
+					<ListDecimalItem
+						key={client.id}
+						title={client.client}
+						linkText={`See ${client.reports} projects`}
+						linkHref={`/${client.id}`}
+						imageName={`component-driven.82a66c3c.png`}
+						isLast={ i === arr.length - 1 }
+					/>
+				))}
+			</ol>
+		) : <>`You do not have any client in the system yet.`</>
 	)
 }

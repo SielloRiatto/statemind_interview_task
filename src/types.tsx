@@ -3,6 +3,7 @@ export type {
 	AuditType,
 	AuditDetailsType,
 	StatusType,
+	ResultWithStatusType,
 }
 
 type AuditDetailsType = {
@@ -37,3 +38,8 @@ type ClientType = {
 }
 
 type StatusType = 'LOAD' | 'SUCCESS' | 'FAIL'
+
+type ResultWithStatusType = {
+	result: ClientType[] | ClientType | null,
+	status: StatusType
+}
