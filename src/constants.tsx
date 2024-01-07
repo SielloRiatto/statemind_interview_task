@@ -1,0 +1,1 @@
+export const fiveMinutes: Readonly<number> = 300000

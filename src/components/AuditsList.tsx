@@ -1,22 +1,10 @@
 'use client'
 
 import { ReactElement, useMemo } from "react"
-import dynamic from "next/dynamic"
-
 import { ClientType } from "@/types"
 import useClients from "@/hooks/useClients"
 import statusHOC from "@/components/Loader/statusHOC"
-
-import ListDecimalItemLoader
-	from "@/components/ListDecimalItem/ListDecimalItemLoader"
-
-const ListDecimalItem = dynamic(
-	() => import('@/components/ListDecimalItem'),
-	{
-	  ssr: false,
-	  loading: ListDecimalItemLoader
-	}
-)
+import ListDecimalItem from "@/components/ListDecimalItem"
 
 export default function AuditsList(): ReactElement {
 	const WrappedChild = statusHOC({
