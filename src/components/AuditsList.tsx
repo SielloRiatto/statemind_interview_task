@@ -1,10 +1,11 @@
 'use client'
 
-import { ReactElement, useMemo } from "react"
+import { ReactElement } from "react"
 import { ClientType } from "@/types"
 import useClients from "@/hooks/useClients"
 import statusHOC from "@/components/Loader/statusHOC"
 import ListDecimalItem from "@/components/ListDecimalItem"
+import { headerClassName } from "@/constants"
 
 export default function AuditsList(): ReactElement {
 	const WrappedChild = statusHOC({
@@ -20,10 +21,6 @@ function AuditsListBlock(
 	{ result: client }:
 	{ result: NonNullable<ClientType> }
 ): ReactElement {
-	const headerClassName = useMemo(() => (`
-		p-3 text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200
-	`), [])
-
 	return (
 		<>
 		<h3 className={headerClassName}>
