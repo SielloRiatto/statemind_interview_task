@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useMemo } from "react"
-import ListDecimalItemImage from "./ListDecimalItemImage"
+import ListDecimalItemImage from "@/components/ListDecimalItem/ListDecimalItemImage"
 
 interface ListDecimalItemProps {
   title: string,

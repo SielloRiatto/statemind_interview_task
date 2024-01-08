@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic"
-import Header from "../components/Header"
-import Loader from "../components/Loader"
+import Header from "@/components/Header"
+import Loader from "@/components/Loader"
 
 const AuditsList = dynamic(
-  () => import('../components/AuditsList'),
+  () => import('@/components/AuditsList'),
   {
     ssr: false,
     loading: Loader
